@@ -44,7 +44,7 @@ class SpendingAnalyzerAppGUI:
 
         ctk.CTkLabel(settings_frame, text="Kategori Boros (pisahkan dengan koma, cth: rokok,snack):").grid(row=2, column=0, sticky="w", padx=10, pady=2)
         self.wasteful_categories_entry = ctk.CTkEntry(settings_frame, width=50)
-        self.wasteful_categories_entry.insert(0, "rokok,snack,minuman bersoda,permen,mie instan,sosis,kopi instan,susu kental manis")
+        self.wasteful_categories_entry.insert(0, "rokok,snack")
         self.wasteful_categories_entry.grid(row=2, column=1, sticky="ew", padx=10, pady=2)
         settings_frame.grid_columnconfigure(1, weight=1)
 
@@ -108,6 +108,9 @@ class SpendingAnalyzerAppGUI:
             return
 
         wasteful_categories = [cat.strip() for cat in wasteful_cat_str.split(',') if cat.strip()] if wasteful_cat_str else []
+
+        print("Kategori Boros (dari input):", wasteful_categories)
+
 
         if not self.transactions_data:
             messagebox.showinfo("Analisis Gagal", "Tidak ada data transaksi untuk dianalisis.")
